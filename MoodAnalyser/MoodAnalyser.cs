@@ -41,15 +41,17 @@ namespace MoodAnalyserProblems
                 return "happy";
             }
         }
-
+ 
         public string Analyser() //check msg passing into the constructor 
         {
             try
             {
+ 
                 if (this.message.Equals(string.Empty))
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_EXCEPTION, "Mood should not be empty");
                 }
+ 
                 if (this.message.ToLower().Contains("happy"))
                 {
                     return "happy";
@@ -67,5 +69,4 @@ namespace MoodAnalyserProblems
         }
     }
 
-}
 }

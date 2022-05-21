@@ -28,6 +28,7 @@ namespace MSTestMoodAnalyser
             //Asert
             object p = Asert.AreEqual(excepted, actual);
         }
+ 
         public void Given_Nullmood_Using_CustomException_Return_Null()
         {
             //Arrange;
@@ -44,6 +45,24 @@ namespace MSTestMoodAnalyser
                 Assert.AreEqual(expected, exception.Message);
             }
         }
+ 
+        /// TC2.1 nullmood should return happy
+        /// </summary>
+        [TestMethod]
+        public void Given_nullmood_Expecting_Happy_Results()
+        {
+            //Arrange;
+            MoodAnalyser mood = new MoodAnalyser(null);
+            string expected = "happy";
+
+            //Act
+            string actual = mood.Analyser();
+
+            //Asert
+            Assert.AreEqual(expected, actual);
+        }
+
+ 
     }
 }
  
