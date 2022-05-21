@@ -35,7 +35,7 @@ namespace MoodAnalyser
         //UC5-Reflection using parameterized constructor
         public static object CreatedMoodAnalyserUsingParameterizedConstructor(string className, string constructorName, string message)
         {
-            Type type = typeof(MoodAnalyser);
+            Type type = typeof(MoodAnalyserProblems);
             if (type.Name.Equals(className) || type.FullName.Equals(className))
             {
                 if (type.Name.Equals(constructorName))
@@ -53,6 +53,26 @@ namespace MoodAnalyser
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
 
+            }
+        }
+        ///UC6 Use Reflection to Invoke the method
+
+        public static string InvokeMethod(string className, string methodName, string message)
+        {
+            Type type1 = typeof(MoodAnalyserFactory);
+            try
+            {
+                ConstructorInfo constructor = type1.GetConstructor(new[] { typeof(string) });
+                object obj = MoodAnalyserFactory.CreatedMoodAnalyserUsingParameterizedConstructor(className, methodName, message);
+                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                Type type = excutingAssambly.GetType(className);
+                MethodInfo getMoodMethod = type.GetMethod(methodName);
+                string msg = (string)getMoodMethod.Invoke(obj, null);
+                return msg;
+            }
+            catch (Exception)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT, "No Such Method");
             }
         }
     }

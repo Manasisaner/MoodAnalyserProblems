@@ -17,7 +17,8 @@ namespace MoodAnalyser
         {
             NULL_EXCEPTION, EMPTY_EXCEPTION,
             NO_SUCH_CLASS,
-            NO_SUCH_METHOD
+            NO_SUCH_METHOD,
+            INVALID_INPUT
         }
         /// <summary>
         /// parameterized contructor sets the Exception Type and message.
