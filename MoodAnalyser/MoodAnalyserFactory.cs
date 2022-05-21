@@ -75,5 +75,31 @@ namespace MoodAnalyser
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT, "No Such Method");
             }
         }
+
+        public static dynamic ChangeMoodDynamically(string v, object p)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// UC7 Use Reflection to change mood dynamically
+        /// </summary>
+        /// <param name="className"></param>
+        /// <param name="mood"></param>
+        /// <returns></returns>
+        public static dynamic ChangeMoodDynamically(string className, string mood)
+        {
+            try
+            {
+                Type type = Type.GetType(className);
+                dynamic change_mood = Activator.CreateInstance(type, mood);
+                MethodInfo method = type.GetMethod("GetMood");
+                dynamic value = method.Invoke(change_mood, new object[] { mood });
+                return value;
+            }
+            catch (Exception e)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_EXCEPTION, e.Message);
+            }
+        }
     }
 }
