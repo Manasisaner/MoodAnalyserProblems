@@ -28,7 +28,22 @@ namespace MSTestMoodAnalyser
             //Asert
             object p = Asert.AreEqual(excepted, actual);
         }
-
+        public void Given_Nullmood_Using_CustomException_Return_Null()
+        {
+            //Arrange;
+            MoodAnalyser mood = new MoodAnalyser(null);
+            string expected = "Mood should not be null";
+            try
+            {
+                //Act
+                string actual = mood.Analyser();
+            }
+            catch (MoodAnalyserException exception)
+            {
+                //Asert
+                Assert.AreEqual(expected, exception.Message);
+            }
+        }
     }
 }
  
