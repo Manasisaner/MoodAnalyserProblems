@@ -41,6 +41,25 @@ namespace MoodAnalyserProblems
                 return "happy";
             }
         }
+        //Analyser method to find mood
+        public string Analyser() //check msg passing into the constructor 
+        {
+            try
+            {
+                if (this.message.ToLower().Contains("happy"))
+                {
+                    return "happy";
+                }
+                else
+                {
+                    return "no mood";
+                }
+            }
+            catch
+            {
+                return "happy";
+            }
         }
+    }
     }
 }
